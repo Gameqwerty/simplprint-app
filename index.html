@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add("js")</script>
+  <title>SimplPrint — программа для печати чертежей в реальном размере (1:1) для Windows</title>
+  <meta name="description" content="Бесплатная программа для печати чертежей, шаблонов и выкроек в масштабе 1:1: линейка, сетка и измерения поверх предпросмотра, калибровка масштаба принтера, печать без полей. Печать и сканирование без драйверов: сеть, AirPrint, USB, Wi-Fi Direct.">
+  <meta name="keywords" content="программа для печати, приложение для печати, печать чертежей, печать в масштабе 1:1, печать в реальном размере, калибровка принтера, принтер печатает не в размер, печать без полей, печать шаблонов, печать выкроек, сканирование, AirPrint Windows, печать без драйвера">
+  <link rel="canonical" href="https://gameqwerty.github.io/simplprint-app/">
+  <link rel="alternate" hreflang="ru" href="https://gameqwerty.github.io/simplprint-app/">
+  <link rel="alternate" hreflang="en" href="https://gameqwerty.github.io/simplprint-app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://gameqwerty.github.io/simplprint-app/">
+  <meta name="theme-color" content="#1463d8">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SimplPrint">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="SimplPrint — печать в реальном размере: 100 мм — это 100 мм">
+  <meta property="og:description" content="Линейка, сетка, измерения и калибровка принтера для точной печати чертежей и шаблонов. Бесплатно, Windows 10/11.">
+  <meta property="og:url" content="https://gameqwerty.github.io/simplprint-app/">
+  <meta property="og:image" content="https://gameqwerty.github.io/simplprint-app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Search console verification: paste the codes from Yandex.Webmaster and Google Search Console here.
+  <meta name="yandex-verification" content="">
+  <meta name="google-site-verification" content="">
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SimplPrint",
+    "description": "Программа для печати чертежей, шаблонов и выкроек в реальном размере: линейка, сетка и измерения поверх предпросмотра, калибровка масштаба принтера, печать без полей; печать и сканирование без драйверов.",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "Печать и сканирование",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "0.6.0",
+    "fileSize": "70 MB",
+    "inLanguage": ["ru", "en"],
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+    "downloadUrl": "https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe",
+    "screenshot": "https://gameqwerty.github.io/simplprint-app/assets/img/measure-1600.webp",
+    "image": "https://gameqwerty.github.io/simplprint-app/og-image.png",
+    "url": "https://gameqwerty.github.io/simplprint-app/",
+    "author": { "@type": "Person", "name": "Никита Давыдов" },
+    "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "SimplPrint бесплатный?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Да. Программа бесплатная, без рекламы внутри, без учётной записи и без телеметрии. Код распространяется по лицензии MIT." } },
+      { "@type": "Question", "name": "Почему принтер печатает не в размер?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Обычная печать уменьшает страницу, чтобы она поместилась внутри полей принтера (лист A4 выходит примерно на 97 %), а сам принтер добавляет погрешность около 1 %. В SimplPrint есть печать в реальном размере и калибровка размера, которая исправляет погрешность принтера." } },
+      { "@type": "Question", "name": "Нужны ли драйверы принтера?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Для сетевых принтеров и МФУ — нет: SimplPrint печатает по IPP (IPP Everywhere, AirPrint, Mopria) и сканирует по eSCL. Принтеры и сканеры, подключённые по USB, работают через установленный в Windows драйвер." } },
+      { "@type": "Question", "name": "Какие принтеры поддерживаются?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Большинство сетевых принтеров и МФУ последних лет (IPP Everywhere, AirPrint, Mopria), любые принтеры, установленные в Windows (USB или с драйвером), а также подключение к собственной сети Wi-Fi принтера (Wi-Fi Direct)." } },
+      { "@type": "Question", "name": "Почему Windows предупреждает при запуске?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Файл пока не подписан цифровой подписью, поэтому SmartScreen показывает предупреждение. Нажмите «Подробнее», затем «Выполнить в любом случае»." } }
+    ]
+  }
+  </script>
+
+  <!-- Analytics (optional): paste the Yandex.Metrika counter here. SimplPrint itself sends no data. -->
+</head>
+<body>
+  <a class="visually-hidden" href="#main">К содержанию</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="./" aria-label="SimplPrint — на главную">
+        <img src="assets/img/logo-64.png" alt="" width="34" height="34">
+        SimplPrint <span class="badge-beta">бета</span>
+      </a>
+      <nav class="nav" aria-label="Разделы">
+        <a href="#precision">Точность</a>
+        <a href="#features">Возможности</a>
+        <a href="#screens">Скриншоты</a>
+        <a href="#compare">Сравнение</a>
+        <a href="#beta">Бета-тест</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+      <div class="header__actions">
+        <a class="lang" href="en/" hreflang="en" lang="en">EN</a>
+        <button class="theme-toggle" type="button" aria-label="Светлая или тёмная тема">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn--primary btn--small" href="#download">Скачать</a>
+        <button class="menu-toggle" type="button" aria-label="Меню" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <span class="eyebrow">Программа для точной печати · Windows</span>
+          <h1>Печать в реальном размере: <span class="hero__accent">100&nbsp;мм — это 100&nbsp;мм</span></h1>
+          <p class="hero__lead">
+            SimplPrint — простая инженерная печать. Чертежи, шаблоны, выкройки и трафареты печатаются в масштабе 1:1:
+            линейка, сетка и измерения поверх предпросмотра показывают, где на бумаге окажется каждая линия, а калибровка
+            исправляет погрешность вашего принтера.
+          </p>
+          <div class="hero__buttons">
+            <a class="btn btn--primary" href="https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe" data-download>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+              <span>Скачать для Windows<small>бета 0.6.0 · 70 МБ</small></span>
+            </a>
+            <a class="btn btn--ghost" href="#precision">Как это работает</a>
+          </div>
+          <div class="hero__facts">
+            <span>Бесплатно</span><span>Без установки</span><span>Без драйверов</span><span>Windows 10/11</span>
+          </div>
+        </div>
+        <div class="hero__shot">
+          <div class="window">
+            <img src="assets/img/measure-960.webp" srcset="assets/img/measure-960.webp 960w, assets/img/measure-1600.webp 1600w"
+                 sizes="(max-width: 960px) 100vw, 640px" width="1600" height="1000"
+                 alt="SimplPrint: чертёж в предпросмотре печати с линейкой, сеткой и измерениями 120,0 и 100,1 мм" fetchpriority="high">
+          </div>
+          <div class="callout callout--a">📏 Измерено: <b>120,0 мм</b></div>
+          <div class="callout callout--b">🎯 Погрешность принтера: <b>исправлена</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad: below the first screen -->
+    <div class="ad-band">
+      <div class="container">
+        <aside class="ad-slot ad-slot--leaderboard" data-label="Реклама" aria-label="Реклама">
+          <!-- Paste the ad code here (Yandex Advertising Network / Google AdSense), 970×90 or adaptive. -->
+          <span class="ad-slot__placeholder">Место для рекламы · 970×90</span>
+        </aside>
+      </div>
+    </div>
+
+    <!-- The problem -->
+    <section class="section" id="precision">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Почему чертёж печатается не в размер</span>
+          <h2>Обычная печать незаметно меняет размер</h2>
+          <p>Чтобы страница поместилась в поля принтера, Windows и программы её уменьшают. Добавьте погрешность самого
+            принтера — и деталь, вырезанная по шаблону, уже не подходит.</p>
+        </div>
+        <div class="problem">
+          <div class="stat reveal"><div class="stat__value">≈97 %</div><p>Страница A4 при обычной печати «по размеру листа» уменьшается до границ полей.</p></div>
+          <div class="stat reveal"><div class="stat__value">±1 %</div><p>Типичная погрешность самого принтера по горизонтали и вертикали — у каждого направления своя.</p></div>
+          <div class="stat reveal"><div class="stat__value">до 8 мм</div><p>Столько можно потерять на длине 200 мм, если сложить уменьшение и погрешность принтера.</p></div>
+        </div>
+
+        <div class="demo" style="margin-top:64px">
+          <div class="demo__stage reveal" id="measure-demo" data-mm="мм" data-title="Пластина" data-label="Лист A4 с сеткой, линейкой и измерением">
+            <div class="demo__controls">
+              <button class="chip" type="button" data-mode="full" aria-pressed="true">SimplPrint: реальный размер</button>
+              <button class="chip" type="button" data-mode="fit" aria-pressed="false">Обычная печать: по размеру листа</button>
+              <span class="readout">Измерено: <b data-readout>—</b></span>
+            </div>
+          </div>
+          <div class="demo__text reveal">
+            <h3>Попробуйте сами: измерьте чертёж</h3>
+            <p>Это упрощённая копия предпросмотра SimplPrint. Протяните мышью или пальцем между двумя точками — появится
+              расстояние в миллиметрах на бумаге. Переключите режим и посмотрите, во что превращается контрольный отрезок
+              100&nbsp;мм при обычной печати.</p>
+            <ul>
+              <li><b>Линейка и сетка</b> в миллиметрах — на экране, но не на бумаге</li>
+              <li><b>«Как при печати»</b>: с полями принтера, уменьшением и калибровкой</li>
+              <li><b>Ctrl или Shift</b> держат линию ровно, с шагом 15°</li>
+            </ul>
+            <p class="hint">Щелчок без перетаскивания убирает измерения — как в программе.</p>
+          </div>
+        </div>
+
+        <div class="demo demo--reverse">
+          <div class="demo__text reveal">
+            <h3>Калибровка размера: один раз линейкой</h3>
+            <p>SimplPrint печатает страницу с сеткой 10&nbsp;мм. Вы измеряете её обычной линейкой и вводите два числа —
+              по горизонтали и по вертикали. После этого каждая страница увеличивается или уменьшается ровно настолько,
+              насколько ошибается принтер.</p>
+            <ul>
+              <li>Отдельно по горизонтали и по вертикали</li>
+              <li>Проверочная страница показывает результат</li>
+              <li>Такая же калибровка есть для печати без полей</li>
+            </ul>
+          </div>
+          <div class="demo__stage reveal" id="calibration-demo" data-mm="мм" data-cm="см" data-caption="Отрезок 100 мм на странице, напечатанный принтером" data-label="Линейка и напечатанный отрезок до и после калибровки">
+            <label class="hint" for="printer-error">Погрешность вашего принтера: <b data-error-text>−0,8 %</b></label>
+            <input class="slider" id="printer-error" type="range" min="-20" max="20" step="1" value="-8" data-error>
+            <div class="demo__controls">
+              <span class="readout">Без калибровки: <b data-before>99,2 мм</b></span>
+              <span class="readout">С калибровкой: <b data-after>—</b></span>
+              <button class="chip" type="button" data-calibrate data-run="Откалибровать" data-reset="Сбросить" aria-pressed="false">Откалибровать</button>
+            </div>
+            <div class="steps" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="hint" style="margin:8px 0 0">Шаги: напечатать сетку → измерить линейкой → ввести в SimplPrint.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Возможности</span>
+          <h2>Всё для точной печати — в одной программе</h2>
+          <p>Того, что ниже, мы не встречали в обычных программах печати: здесь размеры можно увидеть, проверить и
+            поправить ещё до того, как бумага выйдет из принтера.</p>
+        </div>
+        <div class="features">
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v4M12 3v6M16 3v4M3 8h4M3 12h6M3 16h4"/></svg></div>
+            <div><h3>Реальный размер (100 %)</h3><p>Страница печатается в настоящем размере по центру листа, без уменьшения «под поля». Что попадает на поля, видно в предпросмотре.</p><span class="feature__tag">Масштаб 1:1</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+            <div><h3>Калибровка размера</h3><p>Исправляет погрешность принтера отдельно по горизонтали и вертикали. Измерили один раз — и дальше 100&nbsp;мм на странице это 100&nbsp;мм на бумаге.</p><span class="feature__tag">Редко встречается</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></div>
+            <div><h3>Линейка, сетка и измерения</h3><p>Миллиметровая линейка и сетка поверх предпросмотра, измерение расстояния между любыми точками. На листе их нет — если не захотите напечатать.</p><span class="feature__tag">В предпросмотре и редакторе</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="1"/><path d="M6 6h12v12H6z" stroke-dasharray="2 2"/></svg></div>
+            <div><h3>Печать без полей с калибровкой</h3><p>Принтеры увеличивают страницу без полей и срезают края. Калибровочная страница покажет, сколько срезается, и печать совпадёт с предпросмотром.</p><span class="feature__tag">A4, A5, фото и другие</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Скриншоты</span>
+          <h2>Как это выглядит</h2>
+          <p>Настоящие снимки SimplPrint с чертежом A4. Щёлкните по картинке, чтобы увеличить.</p>
+        </div>
+        <div class="tabs" role="group" aria-label="Скриншоты">
+          <button class="chip" type="button" data-tab="shot-measure" aria-pressed="true">Измерения</button>
+          <button class="chip" type="button" data-tab="shot-size" aria-pressed="false">Калибровка размера</button>
+          <button class="chip" type="button" data-tab="shot-borderless" aria-pressed="false">Без полей</button>
+          <button class="chip" type="button" data-tab="shot-editor" aria-pressed="false">Редактор</button>
+          <button class="chip" type="button" data-tab="shot-scan" aria-pressed="false">Сканирование</button>
+          <button class="chip" type="button" data-tab="shot-wifi" aria-pressed="false">Wi-Fi Direct</button>
+        </div>
+        <div class="gallery__panel" id="shot-measure">
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="assets/img/measure-960.webp" data-zoom="assets/img/measure-1600.webp" width="960" height="600" alt="Предпросмотр печати чертежа с линейкой, сеткой и двумя измерениями"></div>
+            <div class="gallery__caption"><h3>Линейка, сетка и измерения</h3><p>Включите «Линейку», «Сетку» и «Измерение» над предпросмотром. Режим «Как при печати» показывает миллиметры на бумаге: с полями принтера, уменьшением по размеру и калибровкой. Здесь расстояние между отверстиями — ровно 120,0 мм, контрольный отрезок — 100,1 мм.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-size" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="assets/img/size-960.webp" data-zoom="assets/img/size-1600.webp" width="960" height="600" alt="Страница калибровки размера с сеткой 10 мм и введёнными значениями 99,2 и 100,6 мм"></div>
+            <div class="gallery__caption"><h3>Калибровка размера</h3><p>«Добавить страницу калибровки размера» кладёт в документ сетку 10&nbsp;мм и сразу настраивает печать. Измерьте её от линии 0 до 100 и введите результат — здесь принтер печатал 99,2&nbsp;мм по горизонтали и 100,6&nbsp;мм по вертикали.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-borderless" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="assets/img/borderless-960.webp" data-zoom="assets/img/borderless-1600.webp" width="960" height="600" alt="Калибровочная страница печати без полей с пронумерованными линиями у краёв"></div>
+            <div class="gallery__caption"><h3>Печать без полей и её калибровка</h3><p>Пронумерованные линии у каждого края показывают, сколько срезает принтер. Введите номера первых напечатанных линий — и печать без полей совпадёт с предпросмотром до миллиметра.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-editor" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="assets/img/editor-960.webp" data-zoom="assets/img/editor-1600.webp" width="960" height="600" alt="Редактор страницы: красная пометка, стрелка и текст на чертеже"></div>
+            <div class="gallery__caption"><h3>Редактор прямо в предпросмотре</h3><p>Пометки, стрелки, фигуры, текст, кисть и ластик, картинки из файла или буфера обмена. Линейку, сетку и измерения можно вписать в страницу и напечатать.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-scan" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="assets/img/scan-960.webp" data-zoom="assets/img/scan-1600.webp" width="960" height="600" alt="Вкладка сканирования: источник, разрешение, цвет и размер бумаги"></div>
+            <div class="gallery__caption"><h3>Сканирование без драйверов</h3><p>Со стекла и из автоподатчика, двусторонние документы — с ручным переворотом. Сетевые сканеры работают по eSCL (AirScan, Mopria), USB-сканеры — через WIA. Сохранение в PDF и JPEG.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-wifi" hidden>
+          <div class="gallery__view">
+            <div class="window" style="max-width:520px;margin:auto"><img class="gallery__image" loading="lazy" src="assets/img/wifi-640.webp" data-zoom="assets/img/wifi-640.webp" width="640" height="566" alt="Окно подключения к собственной сети Wi-Fi принтера"></div>
+            <div class="gallery__caption"><h3>Wi-Fi самого принтера</h3><p>Нет роутера рядом? SimplPrint подключится к сети принтера DIRECT-…, найдёт принтер и сканер, а потом одной кнопкой вернёт компьютер в домашнюю сеть.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Devices -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Принтеры и сканеры</span>
+          <h2>Работает с принтером, который у вас уже есть</h2>
+          <p>Без программ производителя и без поиска драйверов — для сетевых устройств ничего устанавливать не нужно.</p>
+        </div>
+        <div class="devices">
+          <div class="device reveal"><div class="device__icon">📡</div><h3>Сеть и Wi-Fi</h3><p>Печать по IPP (IPP Everywhere, AirPrint, Mopria) и сканирование по eSCL. Принтер и сканер находятся сами — даже если это разные устройства.</p></div>
+          <div class="device reveal"><div class="device__icon">🔌</div><h3>USB и драйверы Windows</h3><p>Принтеры и сканеры, установленные в Windows, — по кабелю или со своим драйвером. Задание отслеживается в очереди Windows.</p></div>
+          <div class="device reveal"><div class="device__icon">📶</div><h3>Wi-Fi Direct</h3><p>Подключение к собственной сети принтера DIRECT-… без роутера и возврат в домашнюю сеть одной кнопкой.</p></div>
+          <div class="device reveal"><div class="device__icon">🛡️</div><h3>Работает с VPN</h3><p>Принтер доступен напрямую через Wi-Fi или Ethernet, в обход маршрутов VPN. Если VPN блокирует сеть, программа подскажет, что исключить.</p></div>
+          <div class="device reveal"><div class="device__icon">🍏</div><h3>AirPrint-принтеры</h3><p>Страницы отправляются в формате Apple raster тем принтерам, которые принимают только его.</p></div>
+          <div class="device reveal"><div class="device__icon">🔒</div><h3>Приватно</h3><p>Без телеметрии и учётных записей. Документы не покидают компьютер — только отправляются на ваш принтер.</p></div>
+        </div>
+        <ul class="more reveal">
+          <li>Двусторонняя печать с ручным переворотом на принтерах без дуплекса</li>
+          <li>Закончилась бумага посреди задания — допечатает остальное, ничего дважды</li>
+          <li>Открывает PDF, JPEG и PNG, смешивает их со сканами</li>
+          <li>Сохраняет в PDF (без пережатия сканов) и JPEG</li>
+          <li>Несохранённые страницы переживают сбой и закрытие</li>
+          <li>Русский и английский интерфейс, подробное руководство</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="section" id="compare">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Сравнение</span>
+          <h2>Чем SimplPrint отличается</h2>
+          <p>Сравнение с тем, что обычно умеют стандартная печать Windows, просмотрщики PDF и программы производителей принтеров.</p>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col">Возможность</th><th scope="col" class="us">SimplPrint</th><th scope="col">Печать Windows и просмотрщики PDF</th><th scope="col">Программы производителей</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Печать в реальном размере, без уменьшения</td><td class="us yes">✓</td><td><span class="part">часто есть («Фактический размер»)</span></td><td><span class="part">зависит от программы</span></td></tr>
+              <tr><td>Калибровка масштаба принтера по линейке</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Линейка, сетка и измерения поверх предпросмотра</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Предпросмотр «как при печати» с полями принтера</td><td class="us yes">✓</td><td><span class="part">приблизительно</span></td><td><span class="part">приблизительно</span></td></tr>
+              <tr><td>Калибровка печати без полей</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Сетевая печать и сканирование без драйверов</td><td class="us yes">✓</td><td><span class="part">нужен драйвер</span></td><td><span class="part">своя программа и драйвер</span></td></tr>
+              <tr><td>Работа при включённом VPN</td><td class="us yes">✓</td><td><span class="part">часто не видит принтер</span></td><td><span class="part">часто не видит принтер</span></td></tr>
+              <tr><td>Без установки, учётной записи и телеметрии</td><td class="us yes">✓</td><td class="yes">✓</td><td><span class="part">часто нужна учётная запись</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">Сравнение с типичными возможностями этих категорий программ; у отдельных программ могут быть свои функции.</p>
+      </div>
+    </section>
+
+    <!-- Ad: in content -->
+    <div class="ad-band">
+      <div class="container">
+        <aside class="ad-slot ad-slot--rectangle" data-label="Реклама" aria-label="Реклама">
+          <!-- Paste the ad code here, 336×280 or 300×250. -->
+          <span class="ad-slot__placeholder">Место для рекламы · 336×280</span>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Beta testing -->
+    <section class="section section--alt" id="beta">
+      <div class="container beta">
+        <div class="reveal">
+          <span class="eyebrow">Бета-тестирование</span>
+          <h2>Помогите сделать SimplPrint лучше</h2>
+          <p>SimplPrint сейчас в открытой бете. Особенно нужны отзывы о том, что трудно проверить без вашего оборудования:</p>
+          <ul class="more" style="columns:1;margin-top:12px">
+            <li>Точность калибровки размера на вашем принтере (сколько мм на 100&nbsp;мм до и после)</li>
+            <li>Принтеры и МФУ разных марок: сеть, AirPrint, USB, Wi-Fi Direct</li>
+            <li>Сканеры по USB и сетевые сканеры</li>
+            <li>Работа с вашим VPN</li>
+          </ul>
+          <p class="hint">Пишите, какой у вас принтер и Windows. Журнал программы — в %LOCALAPPDATA%\PrinterDesk\logs.</p>
+        </div>
+        <div class="beta__card reveal">
+          <h3>Сообщить об ошибке или идее</h3>
+          <ul><li>Опишите, что делали и что произошло</li><li>Приложите скриншот или фото отпечатка</li></ul>
+          <div class="contacts">
+            <a class="contact" href="https://github.com/Gameqwerty/simplprint-app/issues/new" rel="noopener">🐞<span>GitHub Issues<small>нужен аккаунт GitHub</small></span></a>
+            <a class="contact" href="https://t.me/nadavydov" rel="noopener">✈️<span>Telegram<small>@nadavydov</small></span></a>
+            <a class="contact" href="mailto:nikita1907davidov@gmail.com?subject=SimplPrint%20%E2%80%94%20%D0%BE%D1%82%D0%B7%D1%8B%D0%B2">✉️<span>E-mail<small>nikita1907davidov@gmail.com</small></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How to start -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Начало работы</span>
+          <h2>Три шага до первой точной печати</h2>
+        </div>
+        <ol class="start start-list">
+          <li class="reveal"><h3>Скачайте</h3><p>Один файл SimplPrint.exe, 70&nbsp;МБ. Ничего устанавливать не нужно — ни программу, ни .NET.</p></li>
+          <li class="reveal"><h3>Запустите</h3><p>Если Windows SmartScreen предупредит, нажмите «Подробнее» → «Выполнить в любом случае»: файл пока без цифровой подписи.</p></li>
+          <li class="reveal"><h3>Печатайте</h3><p>Принтер найдётся сам. Отметьте «Реальный размер», один раз сделайте калибровку размера — и печатайте в масштабе 1:1.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Вопросы</span>
+          <h2>Частые вопросы</h2>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>SimplPrint бесплатный?</summary><p>Да. Программа бесплатная, без рекламы внутри, без учётной записи и без телеметрии. Код распространяется по лицензии MIT.</p></details>
+          <details class="reveal"><summary>Почему принтер печатает не в размер?</summary><p>Обычная печать уменьшает страницу, чтобы она поместилась внутри полей принтера (лист A4 выходит примерно на 97 %), а сам принтер добавляет погрешность около 1 %. В SimplPrint есть печать в реальном размере и калибровка размера, которая исправляет погрешность принтера.</p></details>
+          <details class="reveal"><summary>Как откалибровать принтер?</summary><p>На вкладке «Печать» откройте «Калибровка размера», нажмите «Добавить страницу калибровки размера» и напечатайте её. Измерьте сетку линейкой от линии 0 до 100 по горизонтали и по вертикали и введите два числа. Проверочная страница покажет результат.</p></details>
+          <details class="reveal"><summary>Нужны ли драйверы принтера?</summary><p>Для сетевых принтеров и МФУ — нет: SimplPrint печатает по IPP (IPP Everywhere, AirPrint, Mopria) и сканирует по eSCL. Принтеры и сканеры, подключённые по USB, работают через установленный в Windows драйвер.</p></details>
+          <details class="reveal"><summary>Какие принтеры поддерживаются?</summary><p>Большинство сетевых принтеров и МФУ последних лет (IPP Everywhere, AirPrint, Mopria), любые принтеры, установленные в Windows (USB или с драйвером), а также подключение к собственной сети Wi-Fi принтера (Wi-Fi Direct).</p></details>
+          <details class="reveal"><summary>Почему Windows предупреждает при запуске?</summary><p>Файл пока не подписан цифровой подписью, поэтому SmartScreen показывает предупреждение. Нажмите «Подробнее», затем «Выполнить в любом случае».</p></details>
+          <details class="reveal"><summary>Работает ли SimplPrint с включённым VPN?</summary><p>Да, с большинством VPN: программа обращается к принтеру напрямую через Wi-Fi или Ethernet. Если VPN блокирует локальную сеть (kill switch), SimplPrint назовёт подсеть, которую нужно исключить в настройках VPN.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download -->
+    <section class="section" id="download">
+      <div class="container">
+        <div class="download reveal">
+          <h2>Скачайте SimplPrint</h2>
+          <p>Бета-версия 0.6.0 для Windows 10 и 11 (64-бит). Один файл, без установки. Настройки и несохранённые страницы
+            сохраняются между запусками.</p>
+          <a class="btn btn--primary" href="https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe" data-download>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+            <span>Скачать SimplPrint.exe<small>70 МБ · бесплатно</small></span>
+          </a>
+          <div class="download__meta">
+            <span>Windows 10/11 x64</span>
+            <a href="https://github.com/Gameqwerty/simplprint-app/releases" rel="noopener">Все версии и что нового</a>
+            <span>Лицензия MIT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <aside class="ad-slot ad-slot--footer" data-label="Реклама" aria-label="Реклама" style="margin-bottom:40px">
+        <!-- Paste the ad code here, 728×90 or adaptive. -->
+        <span class="ad-slot__placeholder">Место для рекламы · 728×90</span>
+      </aside>
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="./"><img src="assets/img/logo-64.png" alt="" width="34" height="34"> SimplPrint</a>
+          <p style="margin-top:12px">Простая инженерная печать для Windows: чертежи и шаблоны в реальном размере, калибровка принтера, печать и сканирование без драйверов.</p>
+        </div>
+        <div>
+          <h4>Программа</h4>
+          <ul>
+            <li><a href="#download">Скачать</a></li>
+            <li><a href="https://github.com/Gameqwerty/simplprint-app/releases" rel="noopener">Версии и изменения</a></li>
+            <li><a href="#faq">Вопросы</a></li>
+            <li><a href="en/" hreflang="en">English version</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Связь</h4>
+          <ul>
+            <li><a href="https://github.com/Gameqwerty/simplprint-app/issues" rel="noopener">GitHub Issues</a></li>
+            <li><a href="https://t.me/nadavydov" rel="noopener">Telegram @nadavydov</a></li>
+            <li><a href="mailto:nikita1907davidov@gmail.com">nikita1907davidov@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Никита Давыдов. SimplPrint основан на PrinterDesk (© 2026 Miguel). Лицензия MIT.</span>
+        <span>Windows — товарный знак Microsoft. AirPrint — товарный знак Apple.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-label="Скриншот"><img alt=""></div>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

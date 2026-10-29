@@ -1,0 +1,29 @@
+name: Ошибка / Bug report
+description: Что-то работает не так / Something does not work as it should
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: Что произошло / What happened
+      description: Что вы делали, что ожидали и что получилось. / What you did, what you expected and what happened.
+    validations:
+      required: true
+  - type: input
+    id: printer
+    attributes:
+      label: Принтер или сканер / Printer or scanner
+      description: Модель и как подключён (сеть, USB, Wi-Fi Direct). / Model and how it is connected (network, USB, Wi-Fi Direct).
+  - type: input
+    id: version
+    attributes:
+      label: Версия SimplPrint и Windows / SimplPrint and Windows version
+      description: Версия есть в ⓘ › О программе. / The version is in ⓘ › About.
+  - type: textarea
+    id: log
+    attributes:
+      label: Журнал / Log
+      description: >-
+        Если есть ошибка — последние строки из %LOCALAPPDATA%\PrinterDesk\logs. Скриншоты и фото отпечатка можно
+        перетащить сюда. / If there is an error, the last lines of %LOCALAPPDATA%\PrinterDesk\logs. Screenshots and photos
+        of the print can be dropped here.

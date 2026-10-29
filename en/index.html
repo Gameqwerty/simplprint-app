@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.documentElement.classList.add("js")</script>
+  <title>SimplPrint — print drawings at real size (1:1) on Windows, with printer calibration</title>
+  <meta name="description" content="Free Windows app for printing drawings, templates and sewing patterns at true 1:1 scale: ruler, grid and measuring over the print preview, printer scale calibration, borderless calibration. Prints and scans without drivers: network, AirPrint, USB, Wi-Fi Direct.">
+  <link rel="canonical" href="https://gameqwerty.github.io/simplprint-app/en/">
+  <link rel="alternate" hreflang="ru" href="https://gameqwerty.github.io/simplprint-app/">
+  <link rel="alternate" hreflang="en" href="https://gameqwerty.github.io/simplprint-app/en/">
+  <link rel="alternate" hreflang="x-default" href="https://gameqwerty.github.io/simplprint-app/">
+  <meta name="theme-color" content="#1463d8">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SimplPrint">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:title" content="SimplPrint — print at real size: 100 mm on screen is 100 mm on paper">
+  <meta property="og:description" content="Ruler, grid, measuring and printer calibration for printing drawings and templates exactly. Free, Windows 10/11.">
+  <meta property="og:url" content="https://gameqwerty.github.io/simplprint-app/en/">
+  <meta property="og:image" content="https://gameqwerty.github.io/simplprint-app/og-image-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SimplPrint",
+    "description": "Windows app for printing drawings, templates and patterns at real size: ruler, grid and measuring over the print preview, printer scale calibration, borderless printing; printing and scanning without drivers.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "0.6.0",
+    "fileSize": "70 MB",
+    "inLanguage": ["en", "ru"],
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe",
+    "screenshot": "https://gameqwerty.github.io/simplprint-app/assets/img/measure-en-1600.webp",
+    "image": "https://gameqwerty.github.io/simplprint-app/og-image-en.png",
+    "url": "https://gameqwerty.github.io/simplprint-app/en/",
+    "author": { "@type": "Person", "name": "Nikita Davydov" },
+    "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is SimplPrint free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is free, with no ads in the app, no account and no telemetry. The code is under the MIT license." } },
+      { "@type": "Question", "name": "Why does my printer print the wrong size?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ordinary printing shrinks the page to fit inside the printer's margins (an A4 page comes out at about 97 %), and the printer adds its own error of about 1 %. SimplPrint prints at actual size and has a size calibration that corrects the printer's error." } },
+      { "@type": "Question", "name": "Do I need printer drivers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not for network printers and all-in-ones: SimplPrint prints over IPP (IPP Everywhere, AirPrint, Mopria) and scans over eSCL. Printers and scanners on USB work through the driver installed in Windows." } },
+      { "@type": "Question", "name": "Why does Windows warn me when I start it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The file is not code-signed yet, so SmartScreen shows a warning. Click More info, then Run anyway." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="visually-hidden" href="#main">Skip to content</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="./" aria-label="SimplPrint home">
+        <img src="../assets/img/logo-64.png" alt="" width="34" height="34">
+        SimplPrint <span class="badge-beta">beta</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#precision">Precision</a>
+        <a href="#features">Features</a>
+        <a href="#screens">Screenshots</a>
+        <a href="#compare">Comparison</a>
+        <a href="#beta">Beta test</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="header__actions">
+        <a class="lang" href="../" hreflang="ru" lang="ru">RU</a>
+        <button class="theme-toggle" type="button" aria-label="Light or dark theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn--primary btn--small" href="#download">Download</a>
+        <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <span class="eyebrow">Precise printing for Windows</span>
+          <h1>Print at real size: <span class="hero__accent">100&nbsp;mm is 100&nbsp;mm</span></h1>
+          <p class="hero__lead">
+            SimplPrint is simple engineering printing. Drawings, templates, sewing patterns and stencils print at 1:1:
+            a ruler, a grid and measuring over the print preview show where every line lands on the paper, and a
+            calibration corrects your printer's own error.
+          </p>
+          <div class="hero__buttons">
+            <a class="btn btn--primary" href="https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe" data-download>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+              <span>Download for Windows<small>beta 0.6.0 · 70 MB</small></span>
+            </a>
+            <a class="btn btn--ghost" href="#precision">How it works</a>
+          </div>
+          <div class="hero__facts">
+            <span>Free</span><span>No installation</span><span>No drivers</span><span>Windows 10/11</span>
+          </div>
+        </div>
+        <div class="hero__shot">
+          <div class="window">
+            <img src="../assets/img/measure-en-960.webp" srcset="../assets/img/measure-en-960.webp 960w, ../assets/img/measure-en-1600.webp 1600w"
+                 sizes="(max-width: 960px) 100vw, 640px" width="1600" height="1000"
+                 alt="SimplPrint: a drawing in the print preview with ruler, grid and measurements of 120.0 and 100.1 mm" fetchpriority="high">
+          </div>
+          <div class="callout callout--a">📏 Measured: <b>120.0 mm</b></div>
+          <div class="callout callout--b">🎯 Printer error: <b>corrected</b></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-band">
+      <div class="container">
+        <aside class="ad-slot ad-slot--leaderboard" data-label="Advertisement" aria-label="Advertisement">
+          <!-- Paste the ad code here (Google AdSense / Yandex Advertising Network), 970×90 or adaptive. -->
+          <span class="ad-slot__placeholder">Ad space · 970×90</span>
+        </aside>
+      </div>
+    </div>
+
+    <section class="section" id="precision">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Why drawings print the wrong size</span>
+          <h2>Ordinary printing quietly changes the size</h2>
+          <p>To fit a page inside the printer's margins, Windows and most apps shrink it. Add the printer's own error,
+            and a part cut out from a template no longer fits.</p>
+        </div>
+        <div class="problem">
+          <div class="stat reveal"><div class="stat__value">≈97 %</div><p>An A4 page printed "fit to page" shrinks to the edges of the margins.</p></div>
+          <div class="stat reveal"><div class="stat__value">±1 %</div><p>A printer's typical own error, across and down, each direction its own.</p></div>
+          <div class="stat reveal"><div class="stat__value">up to 8 mm</div><p>What 200 mm can lose when the shrinking and the printer's error add up.</p></div>
+        </div>
+
+        <div class="demo" style="margin-top:64px">
+          <div class="demo__stage reveal" id="measure-demo" data-mm="mm" data-title="Plate" data-label="An A4 page with a grid, a ruler and a measurement">
+            <div class="demo__controls">
+              <button class="chip" type="button" data-mode="full" aria-pressed="true">SimplPrint: actual size</button>
+              <button class="chip" type="button" data-mode="fit" aria-pressed="false">Ordinary printing: fit to page</button>
+              <span class="readout">Measured: <b data-readout>—</b></span>
+            </div>
+          </div>
+          <div class="demo__text reveal">
+            <h3>Try it: measure the drawing</h3>
+            <p>This is a simplified copy of SimplPrint's preview. Drag with the mouse or a finger between two points to get
+              the distance in millimeters on paper. Switch the mode to see what ordinary printing does to the 100&nbsp;mm
+              check segment.</p>
+            <ul>
+              <li><b>Ruler and grid</b> in millimeters, on screen but not on paper</li>
+              <li><b>"As printed"</b>: with the printer's margins, shrinking and calibration</li>
+              <li><b>Ctrl or Shift</b> keep the line straight, in 15° steps</li>
+            </ul>
+            <p class="hint">A click without dragging clears the measurements, as in the app.</p>
+          </div>
+        </div>
+
+        <div class="demo demo--reverse">
+          <div class="demo__text reveal">
+            <h3>Size calibration: once, with a ruler</h3>
+            <p>SimplPrint prints a page with a 10&nbsp;mm grid. You measure it with an ordinary ruler and type in two
+              numbers, across and down. From then on every page is enlarged or shrunk by exactly the printer's error.</p>
+            <ul>
+              <li>Across and down separately</li>
+              <li>A check page shows the result</li>
+              <li>The same kind of calibration for borderless printing</li>
+            </ul>
+          </div>
+          <div class="demo__stage reveal" id="calibration-demo" data-mm="mm" data-cm="cm" data-caption="A 100 mm segment on the page, as the printer prints it" data-label="A ruler and the printed segment before and after calibration">
+            <label class="hint" for="printer-error">Your printer's error: <b data-error-text>−0.8 %</b></label>
+            <input class="slider" id="printer-error" type="range" min="-20" max="20" step="1" value="-8" data-error>
+            <div class="demo__controls">
+              <span class="readout">Without calibration: <b data-before>99.2 mm</b></span>
+              <span class="readout">With calibration: <b data-after>—</b></span>
+              <button class="chip" type="button" data-calibrate data-run="Calibrate" data-reset="Reset" aria-pressed="false">Calibrate</button>
+            </div>
+            <div class="steps" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="hint" style="margin:8px 0 0">Steps: print the grid → measure it with a ruler → type it into SimplPrint.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Features</span>
+          <h2>Everything for precise printing, in one app</h2>
+          <p>We have not seen the following in ordinary printing apps: here sizes can be seen, checked and corrected
+            before the paper leaves the printer.</p>
+        </div>
+        <div class="features">
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v4M12 3v6M16 3v4M3 8h4M3 12h6M3 16h4"/></svg></div>
+            <div><h3>Actual size (100 %)</h3><p>Pages print at their real size, centered on the paper, without shrinking to fit the margins. What falls in the margins shows in the preview.</p><span class="feature__tag">1:1 scale</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+            <div><h3>Size calibration</h3><p>Corrects the printer's error across and down separately. Measure once, and 100&nbsp;mm on the page are 100&nbsp;mm on paper.</p><span class="feature__tag">Rarely found elsewhere</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg></div>
+            <div><h3>Ruler, grid and measuring</h3><p>A millimeter ruler and grid over the preview, and the distance between any two points. They are not on the paper, unless you want them printed.</p><span class="feature__tag">In the preview and the editor</span></div>
+          </article>
+          <article class="feature reveal">
+            <div class="feature__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="1"/><path d="M6 6h12v12H6z" stroke-dasharray="2 2"/></svg></div>
+            <div><h3>Borderless printing, calibrated</h3><p>Printers enlarge borderless pages and cut off the edges. A calibration page shows how much, and the print matches the preview.</p><span class="feature__tag">A4, A5, photo sizes and more</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screens">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Screenshots</span>
+          <h2>What it looks like</h2>
+          <p>Real screenshots with an A4 drawing; most show the Russian interface, which switches to English with one button. Click a picture to enlarge it.</p>
+        </div>
+        <div class="tabs" role="group" aria-label="Screenshots">
+          <button class="chip" type="button" data-tab="shot-measure" aria-pressed="true">Measuring</button>
+          <button class="chip" type="button" data-tab="shot-size" aria-pressed="false">Size calibration</button>
+          <button class="chip" type="button" data-tab="shot-borderless" aria-pressed="false">Borderless</button>
+          <button class="chip" type="button" data-tab="shot-editor" aria-pressed="false">Editor</button>
+          <button class="chip" type="button" data-tab="shot-scan" aria-pressed="false">Scanning</button>
+          <button class="chip" type="button" data-tab="shot-wifi" aria-pressed="false">Wi-Fi Direct</button>
+        </div>
+        <div class="gallery__panel" id="shot-measure">
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="../assets/img/measure-en-960.webp" data-zoom="../assets/img/measure-en-1600.webp" width="960" height="600" alt="Print preview of a drawing with ruler, grid and two measurements"></div>
+            <div class="gallery__caption"><h3>Ruler, grid and measuring</h3><p>Turn on Ruler, Grid and Measure above the preview. "As printed" gives millimeters on the paper: with the printer's margins, shrinking to fit and the calibration. Here the holes are exactly 120.0 mm apart and the check segment measures 100.1 mm.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-size" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="../assets/img/size-960.webp" data-zoom="../assets/img/size-1600.webp" width="960" height="600" alt="Size calibration page with a 10 mm grid and the measured values 99.2 and 100.6 mm"></div>
+            <div class="gallery__caption"><h3>Size calibration</h3><p>"Add size calibration page" adds a 10&nbsp;mm grid and sets printing up for it. Measure it from line 0 to 100 and type the result in: this printer printed 99.2&nbsp;mm across and 100.6&nbsp;mm down.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-borderless" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="../assets/img/borderless-960.webp" data-zoom="../assets/img/borderless-1600.webp" width="960" height="600" alt="Borderless calibration page with numbered lines at the edges"></div>
+            <div class="gallery__caption"><h3>Borderless printing and its calibration</h3><p>Numbered lines at each edge show how much the printer cuts off. Enter the first printed lines and borderless prints match the preview to the millimeter.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-editor" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="../assets/img/editor-960.webp" data-zoom="../assets/img/editor-1600.webp" width="960" height="600" alt="Page editor: a red mark, an arrow and a note on a drawing"></div>
+            <div class="gallery__caption"><h3>An editor right in the preview</h3><p>Marks, arrows, shapes, text, brush and eraser, pictures from a file or the clipboard. The ruler, grid and measurements can be drawn into the page and printed.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-scan" hidden>
+          <div class="gallery__view">
+            <div class="window"><img class="gallery__image" loading="lazy" src="../assets/img/scan-960.webp" data-zoom="../assets/img/scan-1600.webp" width="960" height="600" alt="Scan tab: source, resolution, color and paper size"></div>
+            <div class="gallery__caption"><h3>Scanning without drivers</h3><p>From the glass and the document feeder, two-sided by turning the stack by hand. Network scanners over eSCL (AirScan, Mopria), USB scanners through WIA. Saves PDF and JPEG.</p></div>
+          </div>
+        </div>
+        <div class="gallery__panel" id="shot-wifi" hidden>
+          <div class="gallery__view">
+            <div class="window" style="max-width:520px;margin:auto"><img class="gallery__image" loading="lazy" src="../assets/img/wifi-640.webp" data-zoom="../assets/img/wifi-640.webp" width="640" height="566" alt="Joining the printer's own Wi-Fi network"></div>
+            <div class="gallery__caption"><h3>The printer's own Wi-Fi</h3><p>No router nearby? SimplPrint joins the printer's DIRECT-… network, finds the printer and scanner, and takes the PC back to the home network with one click.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Printers and scanners</span>
+          <h2>Works with the printer you already have</h2>
+          <p>No vendor software and no driver hunting: network devices need nothing installed.</p>
+        </div>
+        <div class="devices">
+          <div class="device reveal"><div class="device__icon">📡</div><h3>Network and Wi-Fi</h3><p>Prints over IPP (IPP Everywhere, AirPrint, Mopria) and scans over eSCL. Finds the printer and scanner by itself, even when they are different devices.</p></div>
+          <div class="device reveal"><div class="device__icon">🔌</div><h3>USB and Windows drivers</h3><p>Printers and scanners installed in Windows, on a cable or with their own driver. The job is followed in the Windows queue.</p></div>
+          <div class="device reveal"><div class="device__icon">📶</div><h3>Wi-Fi Direct</h3><p>Joins the printer's own DIRECT-… network without a router and goes back to the home network with one click.</p></div>
+          <div class="device reveal"><div class="device__icon">🛡️</div><h3>Works with a VPN on</h3><p>The printer is reached straight through Wi-Fi or Ethernet, past the VPN's routes. If a VPN blocks the network, the app says what to exclude.</p></div>
+          <div class="device reveal"><div class="device__icon">🍏</div><h3>AirPrint printers</h3><p>Pages go as Apple raster to printers that take only that.</p></div>
+          <div class="device reveal"><div class="device__icon">🔒</div><h3>Private</h3><p>No telemetry, no account. Documents never leave the PC except to go to your printer.</p></div>
+        </div>
+        <ul class="more reveal">
+          <li>Two-sided printing by turning the stack on printers without duplex</li>
+          <li>Out of paper mid-job: prints the rest, nothing twice</li>
+          <li>Opens PDF, JPEG and PNG and mixes them with scans</li>
+          <li>Saves PDF (scans not recompressed) and JPEG</li>
+          <li>Unsaved pages survive a crash or close</li>
+          <li>English and Russian interface, a full guide</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Comparison</span>
+          <h2>What makes SimplPrint different</h2>
+          <p>Compared with what Windows printing, PDF viewers and printer makers' apps usually do.</p>
+        </div>
+        <div class="table-wrap reveal">
+          <table class="compare">
+            <thead>
+              <tr><th scope="col">Feature</th><th scope="col" class="us">SimplPrint</th><th scope="col">Windows printing and PDF viewers</th><th scope="col">Printer makers' apps</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Printing at actual size, without shrinking</td><td class="us yes">✓</td><td><span class="part">often ("Actual size")</span></td><td><span class="part">depends on the app</span></td></tr>
+              <tr><td>Printer scale calibration with a ruler</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Ruler, grid and measuring over the preview</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>"As printed" preview with the printer's margins</td><td class="us yes">✓</td><td><span class="part">approximate</span></td><td><span class="part">approximate</span></td></tr>
+              <tr><td>Borderless calibration</td><td class="us yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td>Network printing and scanning without drivers</td><td class="us yes">✓</td><td><span class="part">driver needed</span></td><td><span class="part">own app and driver</span></td></tr>
+              <tr><td>Works with a VPN on</td><td class="us yes">✓</td><td><span class="part">often misses the printer</span></td><td><span class="part">often misses the printer</span></td></tr>
+              <tr><td>No installation, account or telemetry</td><td class="us yes">✓</td><td class="yes">✓</td><td><span class="part">often an account</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footnote">Compared with what these kinds of apps typically offer; individual apps may have features of their own.</p>
+      </div>
+    </section>
+
+    <div class="ad-band">
+      <div class="container">
+        <aside class="ad-slot ad-slot--rectangle" data-label="Advertisement" aria-label="Advertisement">
+          <!-- Paste the ad code here, 336×280 or 300×250. -->
+          <span class="ad-slot__placeholder">Ad space · 336×280</span>
+        </aside>
+      </div>
+    </div>
+
+    <section class="section section--alt" id="beta">
+      <div class="container beta">
+        <div class="reveal">
+          <span class="eyebrow">Beta testing</span>
+          <h2>Help make SimplPrint better</h2>
+          <p>SimplPrint is in open beta. Feedback is most welcome on what cannot be checked without your hardware:</p>
+          <ul class="more" style="columns:1;margin-top:12px">
+            <li>Size calibration accuracy on your printer (mm per 100&nbsp;mm before and after)</li>
+            <li>Printers and all-in-ones of different makes: network, AirPrint, USB, Wi-Fi Direct</li>
+            <li>USB and network scanners</li>
+            <li>Your VPN</li>
+          </ul>
+          <p class="hint">Please mention your printer and Windows version. The app's log is in %LOCALAPPDATA%\PrinterDesk\logs.</p>
+        </div>
+        <div class="beta__card reveal">
+          <h3>Report a bug or an idea</h3>
+          <ul><li>Describe what you did and what happened</li><li>Attach a screenshot or a photo of the print</li></ul>
+          <div class="contacts">
+            <a class="contact" href="https://github.com/Gameqwerty/simplprint-app/issues/new" rel="noopener">🐞<span>GitHub Issues<small>needs a GitHub account</small></span></a>
+            <a class="contact" href="https://t.me/nadavydov" rel="noopener">✈️<span>Telegram<small>@nadavydov</small></span></a>
+            <a class="contact" href="mailto:nikita1907davidov@gmail.com?subject=SimplPrint%20feedback">✉️<span>E-mail<small>nikita1907davidov@gmail.com</small></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Getting started</span>
+          <h2>Three steps to your first exact print</h2>
+        </div>
+        <ol class="start start-list">
+          <li class="reveal"><h3>Download</h3><p>One file, SimplPrint.exe, 70&nbsp;MB. Nothing to install, not even .NET.</p></li>
+          <li class="reveal"><h3>Run it</h3><p>If Windows SmartScreen warns you, click More info → Run anyway: the file is not code-signed yet.</p></li>
+          <li class="reveal"><h3>Print</h3><p>The printer is found by itself. Tick Actual size, do the size calibration once, and print at 1:1.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>Is SimplPrint free?</summary><p>Yes. It is free, with no ads in the app, no account and no telemetry. The code is under the MIT license.</p></details>
+          <details class="reveal"><summary>Why does my printer print the wrong size?</summary><p>Ordinary printing shrinks the page to fit inside the printer's margins (an A4 page comes out at about 97 %), and the printer adds its own error of about 1 %. SimplPrint prints at actual size and has a size calibration that corrects the printer's error.</p></details>
+          <details class="reveal"><summary>How do I calibrate my printer?</summary><p>On the Print tab open Size calibration, click Add size calibration page and print it. Measure the grid from line 0 to 100 across and down with a ruler and type in the two numbers. A check page shows the result.</p></details>
+          <details class="reveal"><summary>Do I need printer drivers?</summary><p>Not for network printers and all-in-ones: SimplPrint prints over IPP (IPP Everywhere, AirPrint, Mopria) and scans over eSCL. Printers and scanners on USB work through the driver installed in Windows.</p></details>
+          <details class="reveal"><summary>Why does Windows warn me when I start it?</summary><p>The file is not code-signed yet, so SmartScreen shows a warning. Click More info, then Run anyway.</p></details>
+          <details class="reveal"><summary>Does it work with a VPN on?</summary><p>Yes, with most VPNs: the app reaches the printer straight through Wi-Fi or Ethernet. If a VPN blocks the local network (kill switch), SimplPrint names the subnet to exclude in the VPN's settings.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="download">
+      <div class="container">
+        <div class="download reveal">
+          <h2>Download SimplPrint</h2>
+          <p>Beta 0.6.0 for Windows 10 and 11 (64-bit). One file, no installation. Settings and unsaved pages are kept
+            between runs.</p>
+          <a class="btn btn--primary" href="https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe" data-download>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+            <span>Download SimplPrint.exe<small>70 MB · free</small></span>
+          </a>
+          <div class="download__meta">
+            <span>Windows 10/11 x64</span>
+            <a href="https://github.com/Gameqwerty/simplprint-app/releases" rel="noopener">All versions and what's new</a>
+            <span>MIT License</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <aside class="ad-slot ad-slot--footer" data-label="Advertisement" aria-label="Advertisement" style="margin-bottom:40px">
+        <!-- Paste the ad code here, 728×90 or adaptive. -->
+        <span class="ad-slot__placeholder">Ad space · 728×90</span>
+      </aside>
+      <div class="footer__grid">
+        <div>
+          <a class="brand" href="./"><img src="../assets/img/logo-64.png" alt="" width="34" height="34"> SimplPrint</a>
+          <p style="margin-top:12px">Simple engineering printing for Windows: drawings and templates at real size, printer calibration, printing and scanning without drivers.</p>
+        </div>
+        <div>
+          <h4>The app</h4>
+          <ul>
+            <li><a href="#download">Download</a></li>
+            <li><a href="https://github.com/Gameqwerty/simplprint-app/releases" rel="noopener">Versions and changes</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="../" hreflang="ru">Русская версия</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://github.com/Gameqwerty/simplprint-app/issues" rel="noopener">GitHub Issues</a></li>
+            <li><a href="https://t.me/nadavydov" rel="noopener">Telegram @nadavydov</a></li>
+            <li><a href="mailto:nikita1907davidov@gmail.com">nikita1907davidov@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Nikita Davydov. SimplPrint is based on PrinterDesk (© 2026 Miguel). MIT License.</span>
+        <span>Windows is a trademark of Microsoft. AirPrint is a trademark of Apple.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" role="dialog" aria-label="Screenshot"><img alt=""></div>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
