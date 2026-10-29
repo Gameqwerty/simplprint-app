@@ -10,7 +10,7 @@
 grid and measuring over the print preview, printer scale calibration, calibrated borderless printing. Printing and
 scanning without drivers: network (IPP Everywhere, AirPrint, Mopria, eSCL), USB, Wi-Fi Direct, also with a VPN on.
 
-- Сайт / Website: <https://gameqwerty.github.io/simplprint-app/>
+- Сайт / Website: <https://simplprint.site/>
 - **[Скачать SimplPrint.exe / Download](https://github.com/Gameqwerty/simplprint-app/releases/latest/download/SimplPrint.exe)**
   (Windows 10/11 x64, без установки / no installation) · [все версии / all versions](https://github.com/Gameqwerty/simplprint-app/releases)
 
